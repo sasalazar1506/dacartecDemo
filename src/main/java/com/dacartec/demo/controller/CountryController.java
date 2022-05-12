@@ -16,6 +16,10 @@ import com.dacartec.demo.dto.RespuestaDTO;
 import com.dacartec.demo.impl.CountryImpl;
 import com.dacartec.demo.services.CountryWS;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+
 @Controller
 @RequestMapping("dacartec")
 public class CountryController {
@@ -24,25 +28,21 @@ public class CountryController {
 	@Autowired
 	CountryWS countryWS;
 	
-	
-	@PostMapping("/create")
+	@Operation(summary = "Registro de Ip")
+	@PostMapping("/createRegIp")
 	public  @ResponseBody RespuestaDTO crearReg(@RequestBody RequestIpDTO data)  {
 		
 		RespuestaDTO response= new RespuestaDTO();
-		
-		//log.info("data: {}", data.getIp());
 		response=countryWS.createCountry(data.getIp());
 		return response;
 	}
 	
+	@Operation(summary = "Obtener Registro por nombre  Pais")
 	@GetMapping("/consulta/{nameCountry}")
 	public  @ResponseBody RespuestaDTO consultarReg(@PathVariable String nameCountry)  {
 		
 		RespuestaDTO response= new RespuestaDTO();
-		
-		//log.info("data: {}", data.getIp());
 		response=countryWS.listCountryFindNameCountry(nameCountry);
-		
 		log.info("data: {}", response);
 		return response;
 	}

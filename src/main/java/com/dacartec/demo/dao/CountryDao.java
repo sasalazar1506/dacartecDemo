@@ -6,9 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import com.dacartec.demo.entity.Country;
-import com.dacartec.demo.entity.IsoCountry;
-
-
 
 public interface CountryDao extends CrudRepository<Country, Long> {
 	
